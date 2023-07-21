@@ -28,7 +28,9 @@ class Predictor(BasePredictor):
         print_folder_structure()
 
         if os.path.exists(output_path):
-            return Path(output_path + "/raw.png")
+            output_file = output_path + "/raw.png"
+            print(f"Output file: {output_file}")
+            return Path(output_file)
         else:
             raise FileNotFoundError("The file could not be created.")
 
