@@ -1,4 +1,5 @@
 import subprocess
+import os
 from cog import BasePredictor, Input, Path
 import torch
 
@@ -16,10 +17,16 @@ class Predictor(BasePredictor):
         ),
         scale: float = Input(description='Rescaling factor', default=2)
     ) -> Path:
-        output_path = f"/tmp/seed-1.png"
+        output_path = "/tmp/seed-1.png"
+        model_path = f"./models/{version}.pth"
 
-        command = f"python run.py -m {version}.pth -o {output_path} -scale {scale}"
-        subprocess.run(command, shell=True, check=True)
-      
-        yield Path(output_path)
+        command = f"python run.py -m {model_path} -o {output_path} -scale {scale}"
+        process = subprocess.Popen(command, shell=True)
 
+        while process.poll() is None:
+            continue
+
+        if os.path.exists(output_path):
+            return Path(output_path)
+        else:
+            raise FileNotFoundError("No file found.")
