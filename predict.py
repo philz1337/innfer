@@ -26,11 +26,11 @@ class Predictor(BasePredictor):
         subprocess.run(command, shell=True)
 
         print_folder_structure()
-        
+
         if os.path.exists(output_path):
             return Path(output_path)
-        elif os.path.exists("/output/raw.png"):
-            return Path("/output/raw.png")
+        elif os.path.exists("output/raw.png"):
+            return Path("output/raw.png")
         else:
             raise FileNotFoundError("The file could not be created.")
 
