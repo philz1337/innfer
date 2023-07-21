@@ -25,9 +25,21 @@ class Predictor(BasePredictor):
         command = f"python run.py -m {model_path} -o {output_path} -scale {scale}"
         subprocess.run(command, shell=True)
 
+        print_folder_structure()
+        
         if os.path.exists(output_path):
             return Path(output_path)
         elif os.path.exists("/output/raw.png"):
             return Path("/output/raw.png")
         else:
             raise FileNotFoundError("The file could not be created.")
+
+
+def print_folder_structure(folder_path="."):
+    for root, dirs, files in os.walk(folder_path):
+        level = root.replace(folder_path, "").count(os.sep)
+        indent = " " * 4 * (level)
+        print(f"{indent}Current Folder: {os.path.basename(root)}/")
+        subindent = " " * 4 * (level + 1)
+        for file in files:
+            print(f"{subindent}{file}")
