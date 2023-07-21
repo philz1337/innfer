@@ -18,19 +18,17 @@ class Predictor(BasePredictor):
         ),
         scale: float = Input(description='Rescaling factor', default=2)
     ) -> Path:
-        output_path = "tmp/seed-1.png"
+        output_path = "./tmp"
         model_path = f"./models/{version}.pth"
 
         # Execute the command in the background
-        command = f"python run.py -m {model_path} -o output/raw.png -scale {scale}"
+        command = f"python run.py -m {model_path} -o {output_path} -scale {scale}"
         subprocess.run(command, shell=True)
 
         print_folder_structure()
 
         if os.path.exists(output_path):
-            return Path(output_path)
-        elif os.path.exists("output/raw.png"):
-            return Path("output/raw.png")
+            return Path(output_path + "/raw.png")
         else:
             raise FileNotFoundError("The file could not be created.")
 
