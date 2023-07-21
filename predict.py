@@ -22,7 +22,7 @@ class Predictor(BasePredictor):
         model_path = f"./models/{version}.pth"
 
         # Execute the command in the background
-        command = f"python run.py -m {model_path} -o {output_path} -scale {scale}"
+        command = f"python run.py -m {model_path} -o output/raw.png -scale {scale}"
         subprocess.run(command, shell=True)
 
         print_folder_structure()
