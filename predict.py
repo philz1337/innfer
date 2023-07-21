@@ -18,7 +18,7 @@ class Predictor(BasePredictor):
         ),
         scale: float = Input(description='Rescaling factor', default=2)
     ) -> Path:
-        output_path = "/tmp/seed-1.png"
+        output_path = "tmp/seed-1.png"
         model_path = f"./models/{version}.pth"
 
         # Execute the command in the background
