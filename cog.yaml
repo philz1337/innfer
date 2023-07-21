@@ -2,7 +2,7 @@ build:
   gpu: true
   python_version: "3.11"
   python_packages:
-    - pytorch==2.0.1
+    - "torch==1.7.1"
   system_packages:
     - "ffmpeg"
     - "libavcodec-dev"
