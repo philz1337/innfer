@@ -4,4 +4,5 @@ build:
   system_packages:
   python_packages:
     - "torch==2.0.1"
+    - "opencv-python==4.8.0.74"
 predict: "predict.py:Predictor"

@@ -18,7 +18,7 @@ class Predictor(BasePredictor):
     ) -> Path:
         output_path = f"/tmp/seed-1.png"
 
-        command = f"python run.py -m {version}.pth -o {output_path}"
+        command = f"python run.py -m {version}.pth -o {output_path} -scale {scale}"
         subprocess.run(command, shell=True, check=True)
       
         yield Path(output_path)
