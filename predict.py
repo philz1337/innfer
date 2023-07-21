@@ -16,7 +16,10 @@ class Predictor(BasePredictor):
         ),
         scale: float = Input(description='Rescaling factor', default=2)
     ) -> Path:
-        command = f"python run.py -m {version}.pth"
-        subprocess.run(command, shell=True, check=True)
+        output_path = f"/tmp/seed-1.png"
 
-        return image
+        command = f"python run.py -m {version}.pth -o {output_path}"
+        subprocess.run(command, shell=True, check=True)
+      
+        yield Path(output_path)
+
